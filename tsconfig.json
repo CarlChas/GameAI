@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS", // Ensure you're using CommonJS module resolution
+        "esModuleInterop": true, // Enables interoperability between CommonJS and ES modules
+        "resolveJsonModule": true, // Allow importing .json files (optional, but useful)
+        "skipLibCheck": true // Skip type checks for libraries (can suppress some issues)
+    }
+}

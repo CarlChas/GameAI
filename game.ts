@@ -34,16 +34,29 @@ class Enemy extends Character {
     }
 }
 
+function enemyAttack(player: Player, enemy: Enemy) {
+    fetch('/enemy-taunt')
+        .then(response => response.json())
+        .then(data => {
+            console.log(`Enemy says: "${data.taunt}"`)
+
+            const damage = Math.floor(Math.random() * 15) + 5
+            player.health -= damage
+            console.log(`${enemy.name} attacks ${player.name} for ${damage} damage.`)
+        })
+        .catch(error => console.error('Error fetching enemy taunt:', error))
+}
+
 function battle(player: Player, enemy: Enemy) {
     let turn = 0
 
     while (player.isAlive() && enemy.isAlive()) {
         console.log(`--- Turn ${turn + 1} ---`)
-        
+
         if (turn % 2 === 0) {
             player.attack(enemy)
         } else {
-            enemy.attack(player)
+            enemyAttack(player, enemy)
         }
 
         turn++
